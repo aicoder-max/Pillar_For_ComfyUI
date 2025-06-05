@@ -14,6 +14,6 @@ Documentation = "https://github.com/aicoder-max/Pillar_For_ComfyUI/tree/main?tab
 dependencies = {file = ["requirements.txt"]}
 
 [tool.comfy]
-PublisherId = "aicoder-max"
+PublisherId = "jack-liu"
 DisplayName = "Pillar_For_ComfyUI"
-Icon = "https://raw.githubusercontent.com/username/super-resolution-node/main/icon.png"
+Icon = "https://github.com/aicoder-max/Pillar_For_ComfyUI/blob/main/icon.png"
