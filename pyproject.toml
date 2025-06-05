@@ -1,6 +1,6 @@
 [project]
 name = "pillar_for_comfyui"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 license = {file = "LICENSE"}
 requires-python = ">=3.11"
