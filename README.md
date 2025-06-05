@@ -1,70 +1,68 @@
+[简体中文](README_zh-cn.md)
 ## Pillar for ComfyUI
-    Pillar 是一款 ComfyUI 扩展插件，为 ComfyUI 提供调用本地分布式服务的能力。目前集成[llama-joycaption-beta-one-hf-llava](https://huggingface.co/fancyfeast/llama-joycaption-beta-one-hf-llava)模型，提供分布式部署方案，解决模型占用过多资源，影响生图效率的问题。
+    Pillar is an extension plugin for ComfyUI, providing the ability to call local distributed services for ComfyUI. Currently, it integrates the llama-joycaption-beta-one-hf-llava model and offers a distributed deployment solution to solve the problem that the model occupies too many resources and affects the image generation efficiency.
 ---
 
-## Pillar 提供以下节点
+## Nodes Provided by Pillar
 
 ![Nodes.png](images/Nodes.png)
 
-1. **预览文本节点**
-展示文本信息。
-2. **翻译节点**
-   中文和英文两种语言互译，自动检测输入语言类型，当输入语言为中文时，则翻译为英文，反之，则翻译为中文。
-   * **服务器/本地**: 本地：当前物理机调用模型。远程：通过Http协议调用模型分布式服务。
-3. **图片描述节点**
-   根据输入提示词选项，输出图片描述。
-   * **服务器/本地**: 本地：当前物理机调用模型。远程：通过Http协议调用模型分布式服务。
-   * **服务器IP:端口**: 本地模式下该参数不起作用。远程模式下，该参数填写远程服务器IP:端口，填写格式为：192.168.1.100:8000
-   * **模型加载方式**:只对本地模式下有效。选项：最大节省 (4-bit)、平衡 (8-bit)、默认模式 ，内存占用分别约为：4.2G、8.5G、17G
-   * **描述类型**: 让模型按照选定类型输出图片描述。支持选项：详细描述、详细描述（随意）、直接描述、Stable Diffusion 提示、MidJourney 提示、Danbooru 标签列表、e621 标签列表、Rule34 标签列表、Booru-like 标签列表、艺术评论家、产品列表、社交媒体帖子
-   * **描述长度**: 限制模型输出长度。支持选项：任意、非常短、短、中等长度、长、非常长、指定token长度（20、30、...）
-   * **附加选项1**: 进步提示模型应该如何生成图片描述，支持选项：如果图片中有人物 / 角色，你必须用 {name} 来称呼他们。、不要包含无法改变的信息（如种族、性别等），但仍应包含可改变的属性（如发型）。、包含关于照明信息。略...
-   * **附加选项2**: 同上。
-   * **附加选项3**: 同上。
-   * **人名**: 与附加选项中：如果图片中有人物 / 角色，你必须用 {name} 来称呼他们。配合使用，这里的人名将替换前面的{name}。
-   * **最大token数**: 限制模型计算规模，token越大，模型计算越耗时越长。
-   * **温度**: 调整生成文本的随机性和创造性，取值范围：通常为 0.0~2.0，默认值约 0.7。值越小（接近 0）：输出更确定性、聚焦，倾向于选择概率最高的词，生成内容更保守、准确，但可能更刻板。
-值越大（如 1.0 以上）：输出更随机、多样，允许模型探索低概率词，生成内容更有创造性，但可能更偏离主题或出现逻辑错误。应用场景： 需精确答案时（如数学计算、事实陈述）：用低温（0.2~0.5）。 需创意内容时（如故事写作、诗歌生成）：用高温（0.7~1.0）。
-   * **系数P**: Top-P Sampling（Nucleus Sampling，核采样）作用：动态选择候选词，使累积概率超过阈值 P（如 0.9）的词进入候选集。取值：P 为概率值（如 P=0.9）。 P 越小：候选词越少，生成越确定性。 P 越大：候选词越多，接近随机采样。优势：自适应调整候选词数量，避免高质量但低概率的词被完全排除（对比 Top-K）。
-应用场景： 平衡多样性与合理性：常用 P=0.8~0.95。
-   * **系数K**:  Top-K Sampling（Top-K 采样）作用：限制模型在生成下一个词时的候选词范围，只从概率最高的 K 个词中选择。取值：K 为正整数（如 K=40）。 K 越小：候选词越少，生成越聚焦，但可能导致重复或刻板表达。 K 越大：候选词越多，生成更灵活，但可能引入无关词汇。应用场景：
-防止模型生成低质量词汇：设置适当的 K（如 50~100）。 需严格控制内容时：用较小的 K（如 20~30）。
-4. **图片描述（自定义）**
-   自定义提示词，更灵活，对图片描述节点的扩充。支持中文、英文两种提示，输出图片描述。
-   * **服务器/本地**: 本地：当前物理机调用模型。远程：通过Http协议调用模型分布式服务。
-   * **模型加载方式**:只对本地模式下有效。选项：最大节省 (4-bit)、平衡 (8-bit)、默认模式 ，内存占用分别约为：4.2G、8.5G、17G
-   * **系统提示词**:自定义系统提示词，告诉模型它的角色。
-   * **用户提示词**:用户提示词，告诉模型应该如何对图片进行描述。
-   * **最大token数**: 同图片描述节点，详情参见图片描述节点。
-   * **温度**: 同图片描述节点，详情参见图片描述节点。
-   * **系数P**: 同图片描述节点，详情参见图片描述节点。
-   * **系数K**: 同图片描述节点，详情参见图片描述节点。
+1. **Preview Text Node**
+Displays text information.
+2. **Translation Node**
+   Translates between Chinese and English. It automatically detects the input language type. When the input language is Chinese, it translates to English; otherwise, it translates to Chinese.
+   * **Server/Local**: Local: Calls the model on the current physical machine. Remote: Calls the model distributed service via the Http protocol.
+3. **JoyCaption Node**
+   Outputs an image description based on the input prompt options.
+   * **Server/Local**: Local: Calls the model on the current physical machine. Remote: Calls the model distributed service via the Http protocol.
+   * **Server IP:Port**: This parameter has no effect in local mode. In remote mode, fill in the IP and port of the remote server in the format: 192.168.1.100:8000.
+   * **Model Loading Mode**:Only valid in local mode. Options: Maximum Savings (4-bit), Balance (8-bit), Default Mode, with memory usage of approximately 4.2G, 8.5G, and 17G respectively.
+   * **Description Type**: Allows the model to output the image description according to the selected type. Supported options: Detailed Description, Detailed Description (Casual), Direct Description, Stable Diffusion Prompt, MidJourney Prompt, Danbooru Tag List, e621 Tag List, Rule34 Tag List, Booru-like Tag List, Art Critic, Product List, Social Media Post.
+   * **Description Length**: Limits the output length of the model. Supported options: Any, Very Short, Short, Medium Length, Long, Very Long, Specified Token Length (20, 30, ...).
+   * **Additional Option 1**: Provides progressive hints on how the model should generate the image description. Supported options: If there are people/characters in the picture, you must refer to them as {name}. Do not include unchangeable information (such as race, gender, etc.), but still include changeable attributes (such as hairstyle). Include information about lighting. And so on.
+   * **Additional Option 2**: Same as above.
+   * **Additional Option 3**: Same as above.
+   * **Person's Name**: Used in conjunction with the option "If there are people/characters in the picture, you must refer to them as {name}." The name here will replace {name} above.
+   * **Maximum Tokens**: Limits the calculation scale of the model. The larger the token, the longer the model calculation takes.
+   * **Temperature**: Adjusts the randomness and creativity of the generated text. The value range is usually 0.0 - 2.0, with a default value of approximately 0.7. A smaller value (close to 0): The output is more deterministic and focused, tending to select the word with the highest probability, and the generated content is more conservative and accurate but may be more stereotyped. A larger value (above 1.0): The output is more random and diverse, allowing the model to explore low-probability words, and the generated content is more creative but may deviate more from the theme or have logical errors. Application scenarios: For precise answers (such as mathematical calculations, factual statements): Use a low temperature (0.2 - 0.5). For creative content (such as story writing, poetry generation): Use a high temperature (0.7 - 1.0).
+   * **Top P**: Top-P Sampling (Nucleus Sampling) function: Dynamically selects candidate words so that words with a cumulative probability exceeding the threshold P (such as 0.9) enter the candidate set. Value: P is a probability value (such as P = 0.9). A smaller P: Fewer candidate words, and the generation is more deterministic. A larger P: More candidate words, approaching random sampling. Advantage: Adaptively adjusts the number of candidate words, avoiding completely excluding high-quality but low-probability words (compared to Top-K). Application scenarios: To balance diversity and rationality: Commonly use P = 0.8 - 0.95.
+   * **Top K**:  Top-K Sampling function: Limits the candidate word range when the model generates the next word, only selecting from the K words with the highest probability. Value: K is a positive integer (such as K = 40). A smaller K: Fewer candidate words, and the generation is more focused but may lead to repetitive or stereotyped expressions. A larger K: More candidate words, and the generation is more flexible but may introduce irrelevant vocabulary. Application scenarios: To prevent the model from generating low-quality vocabulary: Set an appropriate K (such as 50 - 100). When strict content control is required: Use a smaller K (such as 20 - 30).
+4. **Joy Caption (Custom)**
+   Allows for custom prompts, which is more flexible and an extension of the image description node. Supports both Chinese and English prompts and outputs an image description.
+   * **Server/Local**: Same as the JoyCaption node. See the details in the image description node.
+   * **Model Loading Mode**:Same as the JoyCaption node. See the details in the JoyCaption node.
+   * **System Prompt**:Customize the system prompt to tell the model its role.
+   * **User Prompt**:The user's prompt to tell the model how to describe the picture.
+   * **最大token数**: Same as the JoyCaption node. See the details in the JoyCaption node.
+   * **温度**: Same as the JoyCaption node. See the details in the JoyCaption node.
+   * **系数P**: Same as the JoyCaption node. See the details in the JoyCaption node.
+   * **系数K**: Same as the JoyCaption node. See the details in the JoyCaption node.
 
 ---
 
-## **示例工作流**
-    这个工作流展示了如何使用 Pillar 的中的所有节点。首先加载一张图片，然后使用图片描述节点（自定义），生成图片中文、英文描述。然后使用翻译节点，将图片中文描述翻译为英文，英文描述翻译为中文。最后，使用预览文本节点，展示翻译后内容。适用场景：图生图，提取图片中主要特征，生成图片描述，对描述进行局部调整，再二次渲染生图。
+## **Example Workflow**
+    This workflow demonstrates how to use all the nodes in Pillar. First, load an image, then use the image description node (custom) to generate Chinese and English descriptions of the image. Then use the translation node to translate the Chinese description of the image into English and the English description into Chinese. Finally, use the preview text node to display the translated content. Applicable scenarios: Image-to-image generation, extracting the main features from the image, generating an image description, making local adjustments to the description, and then performing secondary rendering to generate an image.
 ![Pillar_Example_Wrokflow.png](images/Pillar_Example_Wrokflow.png)
 ---
 
-## 如何安装
+## Installation Guide
 
-### **推荐方式**
-* 通过 [ComfyUI-Manager](https://github.com/ltdrdata/ComfyUI-Manager).
+### **Recommended**
+* Through [ComfyUI-Manager](https://github.com/ltdrdata/ComfyUI-Manager). Search for `Pillar_For_ComfyUI` and click to install.
 
-### **手动安装**
-* 在终端（cmd） 导航至`ComfyUI/custom_nodes` 目录.
-* 在 `custom_nodes` 目录下使用以下命令克隆仓库:
+### **Manual Installation**
+* Navigate to the `ComfyUI/custom_nodes` directory in the terminal (cmd).
+* Use the following commands to clone the repository in the `custom_nodes` directory:
   ```
   git clone https://github.com/aicoder-max/Pillar_For_ComfyUI
   cd Pillar_For_ComfyUI
   ```
-* 在 Python 环境中安装依赖项：.
-    * Windows Portable 在 `ComfyUI\custom_nodes\Pillar_For_ComfyUI`目录内运行以下命令:
+* Install the dependencies in the Python environment：
+    * For Windows Portable, run the following command in the `ComfyUI\custom_nodes\Pillar_For_ComfyUI` directory:
         ```
         ..\..\..\python_embeded\python.exe -m pip install -r requirements.txt
         ```
-    * 若使用虚拟环境（venv）或 Conda：先激活 Python 环境，再运行：
+    * If using a virtual environment (venv) or Conda: First activate the Python environment, then run：
         ```
         pip install -r requirements.txt
         ```
