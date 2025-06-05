@@ -1,0 +1,19 @@
+[project]
+name = "pillar_for_comfyui"
+version = "0.0.1"
+description = ""
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+
+[project.urls]
+Repository = "https://github.com/aicoder-max/Pillar_For_ComfyUI"
+Documentation = "https://github.com/aicoder-max/Pillar_For_ComfyUI/tree/main?tab=readme-ov-file"
+"Bug Tracker" = "https://github.com/aicoder-max/Pillar_For_ComfyUI/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.comfy]
+PublisherId = "aicoder-max"
+DisplayName = "Pillar_For_ComfyUI"
+Icon = "https://raw.githubusercontent.com/username/super-resolution-node/main/icon.png"

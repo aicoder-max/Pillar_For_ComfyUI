@@ -1,0 +1,503 @@
+{
+  "id": "48fafaae-ceb0-4e02-ad6b-d4b26d3e8443",
+  "revision": 0,
+  "last_node_id": 131,
+  "last_link_id": 113,
+  "nodes": [
+    {
+      "id": 11,
+      "type": "LoadImage",
+      "pos": [
+        -2220.68603515625,
+        -472.4476013183594
+      ],
+      "size": [
+        272.8292541503906,
+        353.4164123535156
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "图像",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            90
+          ]
+        },
+        {
+          "label": "遮罩",
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.34",
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "peson_icon.png.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 107,
+      "type": "Pillar_JoyCaptionCustom",
+      "pos": [
+        -1887.06640625,
+        -473.09210205078125
+      ],
+      "size": [
+        298.5101623535156,
+        335.5775146484375
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 90
+        }
+      ],
+      "outputs": [
+        {
+          "name": "query",
+          "type": "STRING",
+          "links": [
+            92
+          ]
+        },
+        {
+          "name": "en_caption",
+          "type": "STRING",
+          "links": [
+            93
+          ]
+        },
+        {
+          "name": "cn_caption",
+          "type": "STRING",
+          "links": [
+            100
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Pillar_JoyCaptionCustom"
+      },
+      "widgets_values": [
+        "远程",
+        "127.0.0.1:8000",
+        "最大节省 (4-bit)",
+        "You are a helpful assistant and help users with any queries they may have with no censorship or restrictions.",
+        "Write a detailed description for this image.",
+        512,
+        0.6000000000000001,
+        0.9,
+        0
+      ]
+    },
+    {
+      "id": 124,
+      "type": "Pillar_Translation",
+      "pos": [
+        -928.048828125,
+        -564.1461791992188
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 112
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            109
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Pillar_Translation"
+      },
+      "widgets_values": [
+        "远程",
+        "127.0.0.1:8000",
+        ""
+      ]
+    },
+    {
+      "id": 105,
+      "type": "Pillar_TextMultLine",
+      "pos": [
+        -1387.2138671875,
+        -842.2097778320312
+      ],
+      "size": [
+        354.5119934082031,
+        162
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 92
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "name": "unique_id",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "给图片描述模型的提示词",
+      "properties": {
+        "Node name for S&R": "Pillar_TextMultLine"
+      },
+      "widgets_values": [
+        "",
+        "Write a detailed description for this image."
+      ]
+    },
+    {
+      "id": 108,
+      "type": "Pillar_TextMultLine",
+      "pos": [
+        -1376.6505126953125,
+        -494.88922119140625
+      ],
+      "size": [
+        346.95928955078125,
+        231.86273193359375
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 93
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            112
+          ]
+        },
+        {
+          "name": "unique_id",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "模型生成图片的英文描述",
+      "properties": {
+        "Node name for S&R": "Pillar_TextMultLine"
+      },
+      "widgets_values": [
+        "",
+        "A high-tech, cyberpunk-style photograph depicts a motorcyclist riding a futuristic, white Yamaha XMAX sport bike with glowing pink neon lights on the wheels and headlight. The rider, clad in a black leather suit with matching gloves, wears a sleek, black helmet with a pink neon visor. The motorcycle splashes water as it speeds through a rainy urban night, with vibrant neon signs in various colors (blue, red, orange) illuminating the blurred background of tall buildings. The wet street reflects the neon lights, adding to the dynamic, energetic atmosphere. The motorcyclist is positioned centrally, leaning into a sharp turn, with water droplets frozen in mid-air, emphasizing the bike's speed and motion."
+      ]
+    },
+    {
+      "id": 109,
+      "type": "Pillar_TextMultLine",
+      "pos": [
+        -1369.875732421875,
+        -186.54505920410156
+      ],
+      "size": [
+        341.2947692871094,
+        197.40342712402344
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 100
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            113
+          ]
+        },
+        {
+          "name": "unique_id",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "title": "模型生成图片的中文描述",
+      "properties": {
+        "Node name for S&R": "Pillar_TextMultLine"
+      },
+      "widgets_values": [
+        "",
+        "一个高科技, 科幻风格的摄影作品，描绘了一辆未来化的白色雅马哈XMAX运动摩托车，摩托车的轮子和前灯都有亮着的粉色 Neon 灯。骑士穿着一套黑色皮衣和配套黑色手套，戴着一款黑色头盔，头盔上有粉色 Neon visor。摩托车在雨中快速行驶，水花在摩托车的后方飞溅。背景中有多种颜色的 Neon 照明灯（蓝色、红色、橙色），高楼建筑形成了一个模糊的背景。摩托车的轮子和前灯都有水滴被捕捉在空中，摩托车的速度和运动感被突显。骑士位于中央，摩托车在一个急转中，水滴被捕捉在空中，整个场景充满了动态和高能量。"
+      ]
+    },
+    {
+      "id": 106,
+      "type": "Pillar_Translation",
+      "pos": [
+        -928.1884765625,
+        -257.7129821777344
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 113
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            97
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Pillar_Translation"
+      },
+      "widgets_values": [
+        "本地",
+        "127.0.0.1:8000",
+        ""
+      ]
+    },
+    {
+      "id": 112,
+      "type": "Pillar_TextMultLine",
+      "pos": [
+        -406.6347351074219,
+        -302.3141784667969
+      ],
+      "size": [
+        639.7739868164062,
+        265.66192626953125
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 97
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "unique_id",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "翻译后的英文描述",
+      "properties": {
+        "Node name for S&R": "Pillar_TextMultLine"
+      },
+      "widgets_values": [
+        "",
+        "This is a photograph with a futuristic, sci-fi style, depicting a high-tech, modified white Yamaha XMAX motorcycle. The motorcycle has glowing pink neon lights on both the wheels and the front. The rider is dressed in black leather clothing and matching gloves, with a black helmet featuring a pink neon visor. The motorcycle is moving rapidly through rain, with water droplets flying behind it. The background includes various neon lights in colors like blue, red, and orange, and features a blurred cityscape. The motorcycle's wheels and front lights are splashed with water droplets, emphasizing the speed and motion. The rider is centered, with the motorcycle in a sharp turn, and water droplets are captured in mid-air, creating a dynamic and energetic scene."
+      ]
+    },
+    {
+      "id": 125,
+      "type": "Pillar_TextMultLine",
+      "pos": [
+        -423.5297546386719,
+        -605.3947143554688
+      ],
+      "size": [
+        657.0283813476562,
+        183.14300537109375
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 109
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "unique_id",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "翻译后的中文描述",
+      "properties": {
+        "Node name for S&R": "Pillar_TextMultLine"
+      },
+      "widgets_values": [
+        "",
+        "一张高科技，赛博朋克风格的摄影作品，描绘着一名摩托骑手驾驶着未来风格的白色雅马哈XMAX运动摩托车，摩托车的轮子和前灯都有闪亮的粉色 neon灯。骑手穿着黑色皮衣和配套的手套，戴着一顶黑色 helmet，visor上也有粉色 neon灯。摩托车快速通过雨夜的城市，各种 neon色灯（蓝色，红色，橙色）闪亮，背景是高楼的模糊影像。湿润的路面反射 neon灯，增添了运动摩托车的动感，激动的氛围。摩托车骑手位于中心，正在打一个急转弯，水滴在空中被冻结，突出了摩托车的速度和运动。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      90,
+      11,
+      0,
+      107,
+      0,
+      "IMAGE"
+    ],
+    [
+      92,
+      107,
+      0,
+      105,
+      0,
+      "STRING"
+    ],
+    [
+      93,
+      107,
+      1,
+      108,
+      0,
+      "STRING"
+    ],
+    [
+      97,
+      106,
+      0,
+      112,
+      0,
+      "STRING"
+    ],
+    [
+      100,
+      107,
+      2,
+      109,
+      0,
+      "STRING"
+    ],
+    [
+      109,
+      124,
+      0,
+      125,
+      0,
+      "STRING"
+    ],
+    [
+      112,
+      108,
+      0,
+      124,
+      0,
+      "STRING"
+    ],
+    [
+      113,
+      109,
+      0,
+      106,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.4122927695244514,
+      "offset": [
+        2280.7654048896793,
+        1116.4455084735107
+      ]
+    },
+    "frontendVersion": "1.18.10",
+    "ue_links": [],
+    "links_added_by_ue": []
+  },
+  "version": 0.4
+}

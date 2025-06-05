@@ -1,0 +1,9 @@
+fastapi
+huggingface_hub
+langdetect
+Pillow
+pydantic
+Requests
+torch
+torchvision
+transformers

@@ -1,0 +1,147 @@
+{
+  "Pillar_JoyCaption": {
+    "display_name": "图片描述",
+    "inputs": {
+      "exec_opt": {
+        "name": "服务器/本地"
+      },
+      "base_url": {
+        "name": "服务器IP:端口"
+      },
+      "image": {
+        "name": "图片"
+      },
+      "memory_mode": {
+        "name": "模型加载方式"
+      },
+      "caption_type": {
+        "name": "描述类型"
+      },
+      "caption_length": {
+        "name": "描述长度"
+      },
+      "extra_option1": {
+        "name": "附加选项1"
+      },
+      "extra_option2": {
+        "name": "附加选项2"
+      },
+      "extra_option3": {
+        "name": "附加选项3"
+      },
+      "person_name": {
+        "name": "人名"
+      },
+      "max_new_tokens": {
+        "name": "最大token数"
+      },
+      "temperature": {
+        "name": "温度"
+      },
+      "top_p": {
+        "name": "系数p"
+      },
+      "top_k": {
+        "name": "系数k"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "模型输入提示词"
+      },
+      "1": {
+        "name": "英文描述"
+      },
+      "2": {
+        "name": "中文描述"
+      }
+    }
+  },
+  "Pillar_JoyCaptionCustom": {
+    "display_name": "图片描述（自定义）",
+    "inputs": {
+      "exec_opt": {
+        "name": "服务器/本地"
+      },
+      "base_url": {
+        "name": "服务器IP:端口"
+      },
+      "image": {
+        "name": "图片"
+      },
+      "memory_mode": {
+        "name": "模型加载方式"
+      },
+      "system_prompt": {
+        "name": "系统提示"
+      },
+      "user_query": {
+        "name": "自定义提示词"
+      },
+      "max_new_tokens": {
+        "name": "最大token数"
+      },
+      "temperature": {
+        "name": "温度"
+      },
+      "top_p": {
+        "name": "系数p"
+      },
+      "top_k": {
+        "name": "系数k"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "模型输入提示词"
+      },
+      "1": {
+        "name": "英文描述"
+      },
+      "2": {
+        "name": "中文描述"
+      }
+    }
+  },
+  "Pillar_Translation": {
+    "display_name": "翻译",
+    "inputs": {
+      "exec_opt": {
+        "name": "服务器/本地"
+      },
+      "base_url": {
+        "name": "服务器IP:端口"
+      },
+      "source": {
+        "name": "源语言"
+      },
+      "target": {
+        "name": "目标语言"
+      },
+      "text": {
+        "name": "源语言文本"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "目标语言"
+      }
+    }
+  },
+  "Pillar_TextMultLine": {
+    "display_name": "预览文本",
+    "inputs": {
+      "text": {
+        "name": "输入文本"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "输出文本"
+      },
+      "1": {
+        "name": "唯一编号"
+      }
+    }
+  }
+}
